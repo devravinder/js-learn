@@ -1,9 +1,13 @@
 /* 
+ ref: https://nodejs.org/en/learn/asynchronous-work/understanding-setimmediate
+ ref: https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
+
+
 Note:-
   Node.js has three main queues
      1. Next Tick Queue (process.nextTick).
      2. Microtask Queue (Promise.then, & MutationObserver).
-     3. Event loop phase queues (event loop queue).
+     3. Macrotask Queue  ( Timers, I/O, TCP, Socket  )
 
 
      the control flow ( node execution )
@@ -14,7 +18,7 @@ Note:-
         │  │     Microtask Queue       │────┘
         │  └─────────────┬─────────────┘
         │  ┌─────────────┴─────────────┐
-        └──┤      Event loop Queue     │
+        └──┤     Macrotask Queue       │
            └───────────────────────────┘
 
        - The 'nextTickQueue' and 'microtask' queue are processed before moving to the next event loop phase.
@@ -50,7 +54,10 @@ When Node.js starts,
 
 
     - the event loop contains the following message queues [ FIFO queue ] - called 'Phases'
-          ( actually 7 to 8, but node.js uses these 6 mostly)
+          there are 8 queus: 
+             - nextTickQue (high priority que)
+             - micro-task-que ( 2nd priority que )
+             - macro-task-queue ( node.js uses these 6 mostly )
 
 
            ┌───────────────────────────┐
@@ -97,7 +104,7 @@ When Node.js starts,
     - pending callbacks: 
        -  executes I/O callbacks deferred to the next loop iteration.
        -  eg: if system wants to report TCP error 'ECONNREFUSED', 
-          then that callback will be pushed to this queue and will be executed in the next iteration ( deferred callback ).
+           then that callback will be pushed to this queue and will be executed in the next iteration ( deferred callback ).
 
     - idle, prepare: 
        -  Used internally by Node.js for maintenance and preparation..
@@ -146,5 +153,17 @@ When Node.js starts,
     4. poll
     5. check
     6. close callbacks
+
+
+
+
+    Note:- 
+      Event loop doesn't use queues actually, 
+       but it uses file descriptors wich acts like queues...
+         when the operating system is monitiring them ( nodejs asks the OS to monotor )
+
+      ref: https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop
+
+
 
 */

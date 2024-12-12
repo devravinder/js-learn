@@ -2,93 +2,142 @@
 Nested functions and closures
 -----------------------------
 
-In Nested functions, the nested function forms a closure, this means that a nested function can "inherit" the arguments and variables of its containing function.
+In Nested functions, the nested function forms a closure, 
+this means that a nested function can "inherit" the arguments and variables of its containing function.
+
 In other words, the inner function contains the scope of the outer function.
 
 
 This is a like encapsulation for the variables of the inner function.
 i.e Outer function cannot access  the inner function scope & but the inner can acces outer's scope.
 
+
+- closures are the main concepts behinds objects & calsses in js
+
 */
 
-//eg:1
-function addSquares(a, b) {
+const ex1 = () => {
+  function addSquares(a, b) {
     function square(x) {
       return x * x;
     }
     return square(a) + square(b);
   }
-  
+
   console.log(addSquares(2, 3)); // 13
   console.log(addSquares(3, 4)); // 25
   console.log(addSquares(4, 5)); // 41
+}
+const ex2 = () => {
 
-  //============
   function outside(x) {
-  function inside(y) {
-    return x + y;
+    function inside(y) {
+      return x + y;
+    }
+    return inside;
   }
-  return inside;
+
+  const fnInside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it
+  console.log(fnInside(5)); // 8
+  console.log(outside(3)(5)); // 8
 }
 
-const fnInside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it
-console.log(fnInside(5)); // 8
-console.log(outside(3)(5)); // 8
 
-//============
-
-
-/* 
+const ex3 = () => {
+  /* 
 Name conflict,  More nested scopes take precedence
 */
-function outside() {
-  const x = 5;
-  function inside(x) {
-    return x * 2; // this x takes precedence
+  function outside() {
+    const x = 5;
+    function inside(x) {
+      return x * 2; // this x takes precedence
+    }
+    return inside;
   }
-  return inside;
+
+  console.log(outside()(10)); // 20 (instead of 10)
 }
 
-console.log(outside()(10)); // 20 (instead of 10)
 
-//==================
 
-console.log("=======================Pet Object================")
+const ex4 = () => {
 
-const createPet = function(name, age, height) {
 
-  // all the arguments are accessable by 'pet' from parent scope
+  const createPet = function (name, age, height) {
 
-  const pet = {
-    name,
-    age,
+    // all the arguments are accessable by 'pet' from parent scope
 
-     // setHeight(newHeight){} = setHeight: function (newHeight){}
-    setHeight(newHeight) {
-      height = newHeight;
-      // the height is like private variable
-      //  height is not declared in pet, but it'll be accessed from parent function scope
-    },
-    getHeight(){
-      return height;
-    },
-    logDetails(){
-      console.log(`My name is ${name} and I am ${age} years old & my height is ${height}`);
-    },
+    const pet = {
+      name,
+      age,
 
+      // setHeight(newHeight){} = setHeight: function (newHeight){}
+      setHeight(newHeight) {
+        height = newHeight;
+        // the height is like private variable
+        //  height is not declared in pet, but it'll be accessed in pet from parent function scope
+      },
+      getHeight() {
+        return height;
+      },
+      logDetails() {
+        console.log(`My name is ${name} and I am ${age} years old & my height is ${height}`);
+      },
+
+    };
+    return pet;
   };
-  return pet;
-};
 
 
-const cat = createPet('cat', 2, '30cm');
-cat.logDetails()
-cat.setHeight('20cm');
-cat.logDetails()
+  const cat = createPet('cat', 2, '30cm');
+  cat.logDetails()
+  cat.setHeight('20cm');
+  cat.logDetails()
 
-console.log(cat.age)
-console.log(cat.name)
-console.log(cat.height)// the height is like private variable
-console.log(cat.getHeight())
-cat.setHeight('40cm')
-console.log(cat.getHeight())
+  console.log(cat.age)
+  console.log(cat.name)
+  console.log(cat.height)// the height is like private variable
+  console.log(cat.getHeight())
+  cat.setHeight('40cm')
+  console.log(cat.getHeight())
+
+}
+
+
+const ex5 = () => {
+
+  const privateObj = (name, age) => {
+    const obj = {
+      setName: (newName) => {
+        name = newName
+      },
+      getName: () => {
+        return name
+      },
+
+      setAge: (newAge) => {
+        name = newAge
+      },
+      getAge: () => {
+        return age
+      }
+
+    }
+
+    return obj;
+  }
+
+
+  const obj = privateObj("ramu", 20)
+
+  console.log(obj.name) // undefined // hidden // encapsulation
+  console.log(obj.getName())
+  obj.setName("bheemu")
+  console.log(obj.getName())
+
+}
+
+const start = () => {
+  ex5()
+}
+start()

@@ -1,0 +1,20 @@
+What does enumerable mean?
+   ref: https://stackoverflow.com/questions/17893718/what-does-enumerable-mean
+   
+   - These are properties of an object that are available when we are doing iteration
+      eg: for.. in, Object.keys()
+
+   - these are actual properties...not inherited from Parent/Constructor function
+   
+
+
+Is NodeJs Single threaded?
+   - UV lib (libUV) uses thred pool internally
+      - these is used in some modules
+        eg: fs, crypto, dns lookup, http (get)
+      - by defeault libUV uses 4 threds, we can change this by env variable
+
+   - if we are not using libUV modules
+        - then it is single threaded
+        - else it is multi threaded
+
