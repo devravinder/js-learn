@@ -1,4 +1,5 @@
 /* 
+ video: https://www.youtube.com/watch?v=eiC58R16hb8&ab_channel=LydiaHallie
  ref: https://nodejs.org/en/learn/asynchronous-work/understanding-setimmediate
  ref: https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 
