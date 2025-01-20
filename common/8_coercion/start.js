@@ -42,7 +42,7 @@
      - Truthy values means not true
      - Falsy values means not false     
      
-     - to check exact boolean value of Truthy/False value...do '==='
+     - to check exact boolean value of Truthy/False value...do '===' with boolean
        eg: 
          1. [] === false  // false
          2. [] === true   // false
@@ -190,7 +190,7 @@
         0 > 1 // false
 
 
-  9. we can any function with back ticks ``
+  9. we can call any function with back ticks ``
      - the the arguments are passed as array
 
      - the the string is splitted with regex mathing ${}

@@ -61,3 +61,9 @@ const readDataAsync = async ()=>{
 }
 
 readDataAsync()
+
+// ================ callback to promise ================
+
+const callbackToPromise = ()=>{
+    return new Promise((resolve, reject)=>readData(resolve, reject))
+}

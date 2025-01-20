@@ -23,13 +23,13 @@
 
                 - we can pass arguments to next()
 
-          - but we retrun ( normal return ) any value, the generator function will exit
+          - but if we retrun ( normal return ) any value, the generator function will exit
              and returns 'GeneratorResult' with done is true ({ value: "X", done: true })
 
      - yeild is a keyword,
         - that is used to pause & resume the generator function execution
         - when we call next() on 'Generator' object
-           the following tw0 things will happen at the same time
+           the following two things will happen at the same time
            - it retrurns 'GeneratorResult' object as *next() function call result*
            - and also retruns the * previous next() call arguments* to the generator function 
       
@@ -140,7 +140,7 @@ const ex5 = () => {
     return1 = genObj.next('from main')
     console.log(return1)
 
-    return1 = genObj.next('gain from main')
+    return1 = genObj.next('again from main')
     console.log(return1)
 
     return1 = genObj.next('one more time from main')

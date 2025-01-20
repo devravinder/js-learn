@@ -82,10 +82,10 @@ When Node.js starts,
     
 
     -  when the event loop enters a given phase, 
-         - it will perform any operations specific to that phase ( linking checking the left time )
+         - it will perform any operations specific to that phase ( like checking the left time )
          - then executes the callbacks in that phase's queue 
          
-     - evnt loop exits the phase
+     - event loop exits the phase
         - if the queue becomes empty
         - or callbacks execution limit is reached  [ callbacks execution limit  ]      
         

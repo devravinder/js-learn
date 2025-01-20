@@ -18,7 +18,7 @@ const ex1 = () => {
 
             console.log("======own===")
             const arr = Object(this);
-            const len = arr.length >>> 0;
+            const len = arr.length >>> 0; // read in Chat GPT
             if (arr === 0) return false;
             const currentIndex = fromIndex || 0;
 
@@ -30,12 +30,12 @@ const ex1 = () => {
         };
     }
 
-    const doesBrowserNotSupports=()=> !Array.prototype.includes
+    const doesBrowserSupports=()=> Array.prototype.includes
 
 
     const enablePolyfill = true
     // if the browser is not supporting...add custom
-    if (enablePolyfill || doesBrowserNotSupports()) {
+    if (enablePolyfill || !doesBrowserSupports()) {
             addPolyfillMethod()
     }
 

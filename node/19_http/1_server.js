@@ -2,7 +2,7 @@
  
    ceateServer,request, response are EventEmitters
 
-   equest, response are also streams
+   request, response are also streams
     
 
 */

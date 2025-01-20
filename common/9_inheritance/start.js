@@ -153,7 +153,7 @@ const ex2 = () => {
         this.value = value;
     }
 
-    // Properties all boxes created from the Box() constructor
+    // Properties all boxes created from the Box() constructor   ***
     // will have
     Box.prototype.getValue = function () {
         return this.value;

@@ -29,4 +29,9 @@ setTimeout.call(person, person.sayHello, 1000); // executing in global context /
 
 
 
+function fun(a, b){
+    console.log({a,b})
+}
 
+
+setTimeout(fun, 1000, 1, 2) // passing args

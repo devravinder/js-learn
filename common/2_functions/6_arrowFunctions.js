@@ -2,7 +2,7 @@
 Arrow functions: 
     - Functions with shorter syntax
     - does not have its own this, arguments, super, or new.target
-    - are always anonymous functions
+    - are always anonymous functions (no self recongition)
 
 
     refer: this.js
@@ -26,11 +26,11 @@ var value=100
 const obj = {
   value: 10,
   regularFunction: function () {
-    console.log(this)
+    console.log(this) // obj
     console.log('Regular Function:', this.value); // function is inside obj...so 'this' refers to obj
   },
   arrowFunction: ()=> {
-      console.log(this)
+      console.log(this) // global
       console.log('Arrow Function:', this.value); 
       // the arrow function is defined inside the top-level script or module, where 'this' refers to the global object (or undefined in strict mode).
     },
@@ -85,13 +85,13 @@ const person = {
   fun1: function() {
     setTimeout(function() {
         console.log(this) // setTimeout context = global context (undefined in non-strict mode)
-      console.log(` function:  my name is ${this.name}`); 
+      console.log(` function:  my name is ${this.name}`); // undefined
     }, 1000);
   },
   fun2: function(){
     setTimeout(() => {
         console.log(this) // inherit 'this' from their lexical scope = this points to obj
-      console.log(`arrow function: my name is ${this.name}`);
+      console.log(`arrow function: my name is ${this.name}`); // John
     }, 1000);
   }
 }

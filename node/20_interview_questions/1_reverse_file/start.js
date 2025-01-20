@@ -2,7 +2,7 @@
 /* 
  Question:- Reverse a file which is very large
  
-  Filde Descripters 
+  File Descripters 
      - can read/write a file from a given position
           - takes args:
                 buffer - to hold the data

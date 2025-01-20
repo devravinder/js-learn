@@ -28,7 +28,7 @@
 
     - in non-strict mode
           - in browser, this points to window object
-          - in node, this points to global object
+          - in node, this points to global object (empty object)
 
     - in strict mode
           - in browser, this points to undefined
@@ -44,9 +44,9 @@ console.log("this", this)
 
 
 
-var name = "ramu"; // it is part global obejct
+var name = "ramu"; // it is part global obejct in js ( but not in nodejs )
 
-console.log(this.name)
+console.log(this.name) // ramu ( if run in browser)
 
 function foo() {
      // foo is in global(window) scope
@@ -70,21 +70,24 @@ function createPet(name, height) {
           // logDetails is in pet object, so this points to pet object
           logDetails() {
                console.log(`My name is ${this.petName} and my height is ${this.height}`)
-               console.log(`this.name: `, this.name) // name is in createPet..not in pet
+               console.log(`this.name: `, this.name) // undefined // name is in createPet..not in pet
           }
      }
      return pet
 }
 
+
+console.log("========cat =======")
 const pet = createPet('cat', '20cm');
 pet.logDetails()
 
-console.log(this.name)
+console.log(this.name, "after cat") // cat
 
 
+console.log("=====dog======")
 const dog = new createPet('dog', '30cm'); // will get new object
 dog.logDetails()
-console.log(this.name)
+console.log(this.name, "after dog") // still cat
 
 
 console.log("============= call vs bind vs apply =============")
@@ -121,8 +124,12 @@ const man = { name: 'Somu' }
 
 greet.call(person, "Good Morning", "!")
 greet.apply(human, ["Good Morning", "@"])
-const greetMan = greet.bind(man, "Good Morning", "!")
+console.log("================bind===========")
+const greetMan = greet.bind(man, "Good Morning", "!") // pass args
 greetMan()
+
+const greetAgainMan = greet.bind(man)
+greetAgainMan("Good Evening", "!!") // pass args later
 
 console.log("============= arrow functions===========")
 
@@ -142,6 +149,7 @@ function CreatePerson(name) {
      return person
 }
 
+console.log("============person=======")
 const goodPerson =  new CreatePerson('ramu')
 goodPerson.whish()
 
