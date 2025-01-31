@@ -5,7 +5,7 @@ setTimeout(function() {
 
 setTimeout(function() {
     console.log('2----Hello, World!');
-    console.log(arguments)
+    console.log(arguments)// { '0': 'Hello', '1': 'HI' }
 }, 1000, "Hello", "HI");
 
 
