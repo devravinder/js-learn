@@ -144,6 +144,7 @@ const ex4 = () => {
         console.log(data) // 2nd, after nextTick & before event loop
      })
 
+     // ***
      queueMicrotask(() => {
         console.log('microtask manually'); // 3rd
      })
